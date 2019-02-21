@@ -1,4 +1,4 @@
-<?php include('process.php');?>
+<?php include('process4.php');?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,9 +50,9 @@
 <body>
 <div class="topnav">
   <a class="home" href="home.php">Home</a>
-  <a href="#about">Customer Table</a>
+  <a href="index2.php">Customer Table</a>
   <a href="product.php">Product Table</a>
-  <a href="collection.php">Collection Table</a>
+  <a href="#collection.php">Collection Table</a>
   <a href="items.php">Collection Items</a>
   
 </div>
@@ -77,13 +77,13 @@
 		</nav>
 		</div>
 		 </header><br><br>
-		 <h1><a style="position:absolute;bottom:60%;right:65%;font-family:Broadway;color:red;">Customer Table</h1></a>
+		 <h1><a style="position:absolute;bottom:60%;right:65%;font-family:Broadway;color:red;">Collection Table</h1></a>
 	
 
 	
 <div id="main">
 			
-	<?php require_once 'process.php';?>
+	<?php require_once 'process4.php';?>
 	
 	<?php
 	
@@ -107,26 +107,24 @@
 			$row=$result->fetch_array();
 			$userid=$row['id'];
 		}
-		$result = $mysqli->query("SELECT * FROM customer where userid='$userid'") or die($mysqli->error);
+		$result = $mysqli->query("SELECT * FROM items where userid='$userid'") or die($mysqli->error);
 		//pre_r($result);
 		
 		?>
 		
 		
-		<h2><font style="font-family:Timesnew-Roman" color= "red">All Records</h2></font>
-		<a style="font-family:Stylus BT" href="index3.php"class="btn btn-primary"><b>+</b>Add New Customer</a>
+		<h2><font style="font-family:Timesnew-Roman" color= "red"> All Records</h2></font>
+		<a style="font-family:Stylus BT" href="index6.php"class="btn btn-primary"><b>+</b>Add New Collection</a>
 		<div class="row justify-content-center">
 		<br><br><br>
 			<table class="table">
 				<thead>
 					<tr>
-						<th><a style="font-family:Broadway">Firstname</th>
-						<th><a style="font-family:Broadway">Lastname</th>
-						<th><a style="font-family:Broadway">Middle Name</th>
-						<th><a style="font-family:Broadway">Ext Name</th>
-						<th><a style="font-family:Broadway">Phone No.</th>
-						<th><a style="font-family:Broadway">Street</th>
-						<th><a style="font-family:Broadway">City</th>
+						<th><a style="font-family:Broadway">Code No.</th>
+						<th><a style="font-family:Broadway">Product_ID</th>
+						<th><a style="font-family:Broadway">Quantity</th>
+						<th><a style="font-family:Broadway">Unit</th>
+						<th><a style="font-family:Broadway">Amount</th>
 						<th colspan="2"><a style="font-family:Broadway">Action</th>
 						
 					</tr>
@@ -138,17 +136,15 @@
 					while($row=$result->fetch_assoc()):?>
 					
 						<tr>
-							<td><a style="font-family:Elephant;"><?php echo $row['firstname']?></td></a>
-							<td><a style="font-family:Elephant;"><?php echo $row['lastname']?></td></a>
-							<td><a style="font-family:Elephant;"><?php echo $row['middlename']?></td></a>
-							<td><a style="font-family:Elephant;"><?php echo $row['extname']?></td></a>
-							<td><a style="font-family:Elephant;"><?php echo $row['phoneno']?></td></a>
-							<td><a style="font-family:Elephant;"><?php echo $row['street']?></td></a>
-							<td><a style="font-family:Elephant;"><?php echo $row['city']?></td></a>
+							<td><a style="font-family:Elephant;"><?php echo $row['code_no']?></td></a>
+							<td><a style="font-family:Elephant;"><?php echo $row['product_id']?></td></a>
+							<td><a style="font-family:Elephant;"><?php echo $row['quantity']?></td></a>
+							<td><a style="font-family:Elephant;"><?php echo $row['unit']?></td></a>
+							<td><a style="font-family:Elephant;"><?php echo $row['amount']?></td></a>
 							<td>
-								<a href="index3.php?edit=<?php echo $row['customer_id'];?>"
+								<a href="index6.php?edit=<?php echo $row['code_no'];?>"
 									class="btn btn-info">Edit</a>
-								<a href="process.php?delete=<?php echo $row['customer_id'];?>"
+								<a href="process4.php?delete=<?php echo $row['code_no'];?>"
 									class="btn btn-danger">Delete</a>
 									
 							</td>

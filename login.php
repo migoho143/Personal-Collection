@@ -13,19 +13,19 @@
         <div class="row justify-content-center">
 		 <div class="col-sm-4">
 		<form method="post" action="login.php">
-			<center><h2>Login</h2></center>
+			<center><h2><a style="font-family:Broadway;">Login</h2></center></a>
 			<?php include('errors.php'); ?>
 
 			<div class="input-group">
-			<label>Username</label>
+			<label><a style="font-family:Broadway;">Username</label></a>
 			<input type="text" name="username">
 			</div>
 			<div class="input-group">
-			<label>Password</label>
+			<label><a style="font-family:Broadway;">Password</label></a>
 			<input type="password" name="password">
 			</div>
 			<div class="input-group">
-				<button type="submit" name="login" class="btn">Login</button> 
+				<button type="submit" style="font-family:Broadway" name="login" class="btn">Login</button>
 			</div>
 		</form>
 		</div>

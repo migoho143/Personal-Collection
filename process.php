@@ -31,7 +31,7 @@ if(isset($_POST['save'])){
 	}
 	
 	
-	$mysqli->query("INSERT INTO crud (userid,firstname,lastname,middlename,extname,phoneno,street,city) VALUES ('$userid','$firstname','$lastname','$middlename','$extname','$phoneno','$street','$city')") or
+	$mysqli->query("INSERT INTO customer (userid,firstname,lastname,middlename,extname,phoneno,street,city) VALUES ('$userid','$firstname','$lastname','$middlename','$extname','$phoneno','$street','$city')") or
 			die($mysqli->error);
 	$_SESSION['message'] = "Record has been saved!";
 	$_SESSION['msg_type'] = "success";
@@ -41,7 +41,7 @@ if(isset($_POST['save'])){
 }
 if(isset($_GET['delete'])){
 	$id =$_GET['delete'];
-	$mysqli->query("DELETE FROM crud WHERE id=$id") or die($mysqli->error());
+	$mysqli->query("DELETE FROM customer WHERE customer_id=$id") or die($mysqli->error());
 	
 	$_SESSION['message'] = "Record has been deleted!";
 	$_SESSION['msg_type'] = "danger";
@@ -53,7 +53,7 @@ if(isset($_GET['delete'])){
 if(isset($_GET['edit'])){
 	$id = $_GET['edit'];
 	$update =true;
-	$result = $mysqli->query("SELECT * FROM crud WHERE id=$id") or die($mysqli->error);
+	$result = $mysqli->query("SELECT * FROM customer WHERE customer_id=$id") or die($mysqli->error);
 	if(@count($result)==1){
 		$row=$result->fetch_array();
 		$firstname = $row['firstname'];
@@ -76,7 +76,7 @@ if(isset($_POST['update'])){
 	$street = $_POST['street'];
 	$city = $_POST['city'];
 	
-	$mysqli->query("UPDATE crud SET firstname='$firstname',lastname='$lastname',middlename='$middlename',extname='$extname',phoneno='$phoneno',street='$street',city='$city' WHERE id=$id") or die($mysqli->error);
+	$mysqli->query("UPDATE customer SET firstname='$firstname',lastname='$lastname',middlename='$middlename',extname='$extname',phoneno='$phoneno',street='$street',city='$city' WHERE customer_id=$id") or die($mysqli->error);
 	$_SESSION['message'] = "Record has been updated!";
 	$_SESSION['msg_type'] = "warning";
 	

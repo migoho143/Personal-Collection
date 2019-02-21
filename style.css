@@ -5,11 +5,12 @@
 
 body {
 	font-size: 120%;
-    background-image: url(image.jpg);
+	background-image: url(1.jpg);
 	height: 1000px;
 	background-position: center;
 	background-repeat:no-repeat;
-	background-size:100% 1005px;
+	background-size:100% 900px;
+
 
 }
 
