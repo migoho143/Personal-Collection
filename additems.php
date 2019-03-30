@@ -9,11 +9,10 @@ if (mysqli_connect_errno())
   }
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Register</title>
+<title>Selecting Rows from MySQL Table using checkbox PHP, MySQLi</title>
 	<link rel="stylesheet" type="text/css"	href="style.css">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<style>
@@ -64,11 +63,9 @@ if (mysqli_connect_errno())
   <a href="index2.php">Customer Table</a>
   <a href="product.php">Product Table</a>
   <a href="collection.php">Collection Table</a>
-
   
   
 </div>
-
 
 
 <header class="main">
@@ -87,11 +84,11 @@ if (mysqli_connect_errno())
 		</nav>
 		</div>
 		 </header><br><br>
-		 <h1><a style="position:absolute;bottom:55%;right:80%;font-family:Broadway;color:red;">Items</h1></a>
+
 	
 	<div class="form-group">
-
-		<b><a style="font-family:Broadway;font-size:19px;right:48%;position:absolute;top:30%;">Customer Name:</b><br>
+		
+		<b><a style="font-family:Broadway;font-size:18px;right:48%;position:absolute;top:30%;">Customer Name:</b><br>
 		<?php
 			$sql = "SELECT * FROM customer";
 			$result = mysqli_query($mysqli, $sql);
@@ -110,110 +107,87 @@ if (mysqli_connect_errno())
 				}
 			?>
 		</select></a></br>
+		
+		<?php
 
-	
-<div id="main">
-			
-	<?php require_once 'process5.php';?>
-	
-	<?php
-	
-	if(isset($_SESSION['message'])):?>
-	
-	<div class="alert alert-<?=$_SESSION['msg_type']?>">
-	
-	<?php 
-		echo $_SESSION['message'];
-		unset($_SESSION['message']);
-	?>
-	</div>
-	<?php endif ?>
-	<div class="container">
-	<?php
-		$mysqli = new mysqli('localhost','root','','registration') or die(mysqli_error($mysqli));
-		$username= $_SESSION["username"];
-		$result=$mysqli->query("select id from users where username='$username'") or die($mysqli->error);
-		if(@count($result)==1)
-			{
-			$row=$result->fetch_array();
-			$userid=$row['id'];
-		}
-		$result = $mysqli->query("SELECT * FROM product where userid='$userid'") or die($mysqli->error);
+		$result = $mysqli->query("SELECT * FROM product,customer where product.product_id=customer.customer_id") or die($mysqli->error);
+		
 		//pre_r($result);
+		
 		
 		?>
 		
-		
-		<h2><font style="font-family:Timesnew-Roman" color= "red"> All Records</h2></font>
-		<div class="row justify-content-center">
-		<br><br><br>
-			<table class="table">
-				<thead>
+	<div>
+	
+	<div class="row justify-content-center">
+	<form method="POST">
+	<table class="table">
+	<h1><a style="bottom:60%;right:65%;font-family:Broadway;color:black;">Items</h1></a>
+		<thead>
+			<th></th>
+			<th>Product ID</th>
+			<th>Particular</th>
+			<th>Item Quantity</th>
+			<th>Unit</th>
+			<th>Regular Price</th>
+			<th>Discount</th>
+		</thead>
+		<tbody>
+ 
+			<?php
+			
+				$query=mysqli_query($conn,"select * from `product`");
+				while($row=mysqli_fetch_array($query)){
+					?>
 					<tr>
-						<th><a style="font-family:Broadway">Product ID</th>
-						<th><a style="font-family:Broadway">Particular</th>
-						<th><a style="font-family:Broadway">Item Quantity</th>
-						<th><a style="font-family:Broadway">Unit</th>
-						<th><a style="font-family:Broadway">Regular Price</th>
-						<th><a style="font-family:Broadway">Discount</th>
-						<th><a style="font-family:Broadway">CheckBox</th>
-
-						
+						<td><input type="checkbox" value="<?php echo $row['product_id']; ?>" name="id[]"></td>
+						<td><?php echo $row['product_id']; ?></td>
+						<td><?php echo $row['product_id']; ?></td>
+						<td><?php echo $row['particular']; ?></td>
+						<td><?php echo $row['item_quantity']; ?></td>
+						<td><?php echo $row['unit']; ?></td>
+						<td><?php echo $row['regular_price']; ?></td>
+						<td><?php echo $row['discount']; ?></td>
 					</tr>
-				</thead>
-				
-
-				
-				<?php
-					while($row=$result->fetch_assoc()):?>
-
-						<tr>
-							<td><a style="font-family:Elephant;"><?php echo $row['product_id']?></td></a>
-							<td><a style="font-family:Elephant;"><?php echo $row['particular']?></td></a>
-							<td><a style="font-family:Elephant;"><input type="number" min="0" class="form-control" style="width:80px; height:30px"></td></a>
-							<td><a style="font-family:Elephant;"><?php echo $row['unit']?></td></a>
-							<td><a style="font-family:Elephant;"><?php echo $row['regular_price']?></td></a>
-							<td><a style="font-family:Elephant;"><?php echo $row['discount']?></td></a>
-							<td><a style="font-family:Elephant;"> <label><td><input type="checkbox" value="<?php echo $row['product_id']; ?>" name="id[]"></td>
-							<td>
-							
-								
-								
-							
-									
-							</td>
-						</tr>
-						<?php endwhile;?>
-			</table>
-			<input class="btn btn-primary" type="submit" name="submit" value="Submit">
+					<?php
+				}
+			?>
+ 
+		</tbody>
 		</div>
-		<div>
-		<h2>You Selected:</h2>
+	</table>
+
+	<br>
+	<input  type="submit" class="btn btn-primary" name="submit" value="Submit">
+	</form>
+	</div>
+	
+
+	<a style="font-family:Broadway;color:red;"><h1>Records</h1></a>
+
+	<table border="2">
+		<thead>
+		<tbody>
+	<a style="font-family:Times-new Roman;color:black;">
 		<?php
 			if (isset($_POST['submit'])){
 				
 				foreach ($_POST['id'] as $id):
 				
-				$sq=mysqli_query($conn,"select * from product,items where product_id='$id'");
+				$sq=mysqli_query($conn,"select * from product,customer where product_id='$id'");
 				$srow=mysqli_fetch_array($sq);
-				echo $srow['product_id']. "<br>";
- 
+				echo $srow['product_id']." "." "." ". $srow['particular']." "." ". $srow['item_quantity']." "." ". $srow['unit']." "." ". $srow['regular_price']." "." ". $srow['discount']." "." ". $srow['firstname']."<br>";
+				
 				endforeach;
 			}
+			
 		?>
+		</a>
+		</tbody>
+		</thead>
 	</div>
-		
-		<?php
-		function pre_r($array){
-			echo'<pre>';
-			print_r($array);
-			echo'</pre>';
-		}
-	
-	?>
-	
-	
-</div>
+	</table>
+	</form>
 
 </body>
 </html>
