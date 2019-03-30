@@ -39,7 +39,7 @@
 		mysqli_query($db, $sql);
 		$_SESSION['username'] = $username;
 		$_SESSION['success'] = "You are now logged in";
-		header('location: index2.php');
+		header('location: index.php');
 	}
 	
    }
@@ -63,10 +63,12 @@
 		$query = " SELECT * FROM users WHERE username='$username' AND password='$password'";
 		$result = mysqli_query($db, $query);
 		if (mysqli_num_rows($result) == 1){
-			
-			$_SESSION['username'] = $username;
+		while($row = mysqli_fetch_array($result)){
+			$_SESSION['username'] = $row["username"];
 		    $_SESSION['success'] = "You are now logged in";
-		    header('location: index2.php');
+		
+		}
+		header('location: index.php');
 		}else{
 			array_push($errors, "wrong username/password combination");
 			

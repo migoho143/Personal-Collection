@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2019 at 11:45 PM
+-- Generation Time: Mar 29, 2019 at 10:53 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -27,23 +27,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `collection` (
-  `code_no` int(100) NOT NULL,
+  `collection_code` int(100) NOT NULL,
   `userid` int(100) DEFAULT NULL,
   `customer_id` int(100) DEFAULT NULL,
   `status` varchar(100) DEFAULT NULL,
   `date_paid` date DEFAULT NULL,
-  `interest` decimal(30,10) DEFAULT NULL
+  `interest` decimal(10,2) DEFAULT NULL,
+  `due_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `collection`
 --
 
-INSERT INTO `collection` (`code_no`, `userid`, `customer_id`, `status`, `date_paid`, `interest`) VALUES
-(1, 6, 2, 'single', '2019-02-21', '5.0000000000'),
-(2, 6, 2, 'married', '2019-02-04', '1.0000000000'),
-(3, 6, 3, 'divorced', '2019-02-12', '2.0000000000'),
-(4, 6, 3, 'widowed', '2019-02-12', '3.0000000000');
+INSERT INTO `collection` (`collection_code`, `userid`, `customer_id`, `status`, `date_paid`, `interest`, `due_date`) VALUES
+(43, 6, 10, 'paid', '2019-03-21', '5.00', '2019-03-13'),
+(44, 6, 11, 'paid', '2019-03-07', '5.00', '2019-03-27');
 
 -- --------------------------------------------------------
 
@@ -58,7 +57,7 @@ CREATE TABLE `customer` (
   `lastname` varchar(100) DEFAULT NULL,
   `middlename` varchar(100) DEFAULT NULL,
   `extname` varchar(100) DEFAULT NULL,
-  `phoneno` int(100) DEFAULT NULL,
+  `phoneno` varchar(100) DEFAULT NULL,
   `street` varchar(100) DEFAULT NULL,
   `city` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -68,8 +67,10 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customer_id`, `userid`, `firstname`, `lastname`, `middlename`, `extname`, `phoneno`, `street`, `city`) VALUES
-(2, 6, 'devon', 'asd', 'asd', 'as', 312, 'asd', 'asda'),
-(3, 6, 'ian', 'banaglorioso', 'T.', 'ray', 12346789, 'P-6', 'lamac');
+(10, 6, 'ian', 'banag', 'm', 'abc', '312312', 'ada', 'oroquieta'),
+(11, 6, 'brian', 'cabantac', 'm', 'l', '1232144', 'lower lamac', 'oroquieta'),
+(12, 6, 'daphnie', 'andam', 'm', 'II', '045123789', 'poblacion 1', 'oroquieta city'),
+(13, 6, 'devon', 'bacle', 'm', 'II', '01234579', 'poblacion', 'oroq');
 
 -- --------------------------------------------------------
 
@@ -78,13 +79,21 @@ INSERT INTO `customer` (`customer_id`, `userid`, `firstname`, `lastname`, `middl
 --
 
 CREATE TABLE `items` (
-  `code_no` int(100) DEFAULT NULL,
+  `collection_code` int(100) DEFAULT NULL,
   `userid` int(100) DEFAULT NULL,
   `product_id` int(100) DEFAULT NULL,
-  `quantity` int(100) DEFAULT NULL,
+  `quantity` varchar(100) DEFAULT NULL,
   `unit` varchar(100) DEFAULT NULL,
-  `amount` decimal(30,10) DEFAULT NULL
+  `amount` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`collection_code`, `userid`, `product_id`, `quantity`, `unit`, `amount`) VALUES
+(43, 6, 5, '3', 'pcs', '32131231.00'),
+(43, 6, 5, '5', 'liters', '4564564.00');
 
 -- --------------------------------------------------------
 
@@ -99,7 +108,7 @@ CREATE TABLE `product` (
   `item_quantity` int(100) DEFAULT NULL,
   `unit` varchar(100) DEFAULT NULL,
   `regular_price` int(100) DEFAULT NULL,
-  `discount` int(100) DEFAULT NULL
+  `discount` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -107,7 +116,10 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `userid`, `particular`, `item_quantity`, `unit`, `regular_price`, `discount`) VALUES
-(2, 6, 'g', 1, 'laptop', 1000, 5);
+(5, 6, 'lotion', 4, 'dozen', 1000, '50.00'),
+(6, 6, 't-shirt', 5, 'kl', 500, '5.00'),
+(7, 6, 'shoes', 3, 'kl', 550, '10.00'),
+(8, 6, 'bag', 3, 'liter', 5676, '5.00');
 
 -- --------------------------------------------------------
 
@@ -142,7 +154,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 -- Indexes for table `collection`
 --
 ALTER TABLE `collection`
-  ADD PRIMARY KEY (`code_no`),
+  ADD PRIMARY KEY (`collection_code`),
   ADD KEY `userid` (`userid`),
   ADD KEY `customer_id` (`customer_id`);
 
@@ -157,7 +169,7 @@ ALTER TABLE `customer`
 -- Indexes for table `items`
 --
 ALTER TABLE `items`
-  ADD KEY `code_no` (`code_no`),
+  ADD KEY `code_no` (`collection_code`),
   ADD KEY `userid` (`userid`),
   ADD KEY `product_id` (`product_id`);
 
@@ -182,17 +194,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `collection`
 --
 ALTER TABLE `collection`
-  MODIFY `code_no` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `collection_code` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `customer_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -206,8 +218,8 @@ ALTER TABLE `users`
 -- Constraints for table `collection`
 --
 ALTER TABLE `collection`
-  ADD CONSTRAINT `collection_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `collection_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`);
+  ADD CONSTRAINT `collection_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `collection_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `customer`
@@ -219,9 +231,9 @@ ALTER TABLE `customer`
 -- Constraints for table `items`
 --
 ALTER TABLE `items`
-  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`code_no`) REFERENCES `collection` (`code_no`),
-  ADD CONSTRAINT `items_ibfk_2` FOREIGN KEY (`userid`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `items_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
+  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`collection_code`) REFERENCES `collection` (`collection_code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `items_ibfk_2` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `items_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `product`

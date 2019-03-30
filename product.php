@@ -49,11 +49,10 @@
 </head>
 <body>
 <div class="topnav">
-  <a class="home" href="home.php">Home</a>
+  <a class="home" href="index.php">Home</a>
   <a href="index2.php">Customer Table</a>
   <a href="#product.php">Product Table</a>
   <a href="collection.php">Collection Table</a>
-  <a href="items.php">Collection Items</a>
   
 </div>
 
@@ -120,10 +119,11 @@
 			<table class="table">
 				<thead>
 					<tr>
+						<th><a style="font-family:Broadway">Product ID</th>
 						<th><a style="font-family:Broadway">Particular</th>
-						<th><a style="font-family:Broadway">Item_quantity</th>
+						<th><a style="font-family:Broadway">Item Quantity</th>
 						<th><a style="font-family:Broadway">Unit</th>
-						<th><a style="font-family:Broadway">Regular_price</th>
+						<th><a style="font-family:Broadway">Regular Price</th>
 						<th><a style="font-family:Broadway">Discount</th>
 						<th colspan="2"><a style="font-family:Broadway">Action</th>
 						
@@ -136,6 +136,7 @@
 					while($row=$result->fetch_assoc()):?>
 					
 						<tr>
+							<td><a style="font-family:Elephant;"><?php echo $row['product_id']?></td></a>
 							<td><a style="font-family:Elephant;"><?php echo $row['particular']?></td></a>
 							<td><a style="font-family:Elephant;"><?php echo $row['item_quantity']?></td></a>
 							<td><a style="font-family:Elephant;"><?php echo $row['unit']?></td></a>

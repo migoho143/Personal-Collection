@@ -49,11 +49,11 @@
 </head>
 <body>
 <div class="topnav">
-  <a class="home" href="home.php">Home</a>
+  <a class="home" href="index.php">Home</a>
   <a href="index2.php">Customer Table</a>
   <a href="product.php">Product Table</a>
-  <a href="#collection.php">Collection Table</a>
-  <a href="items.php">Collection Items</a>
+  <a href="collection.php">Collection Table</a>
+  <a href="#items.php">Collection Items</a>
   
 </div>
 
@@ -77,7 +77,7 @@
 		</nav>
 		</div>
 		 </header><br><br>
-		 <h1><a style="position:absolute;bottom:60%;right:65%;font-family:Broadway;color:red;">Collection Table</h1></a>
+		 <h1><a style="position:absolute;bottom:60%;right:56%;font-family:Broadway;color:red;">Collection Items Table</h1></a>
 	
 
 	
@@ -114,7 +114,7 @@
 		
 		
 		<h2><font style="font-family:Timesnew-Roman" color= "red"> All Records</h2></font>
-		<a style="font-family:Stylus BT" href="index6.php"class="btn btn-primary"><b>+</b>Add New Collection</a>
+		<a style="font-family:Stylus BT" href="index6.php"class="btn btn-primary"><b>+</b>Add New Items</a>
 		<div class="row justify-content-center">
 		<br><br><br>
 			<table class="table">

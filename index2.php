@@ -49,11 +49,10 @@
 </head>
 <body>
 <div class="topnav">
-  <a class="home" href="home.php">Home</a>
+  <a class="home" href="index.php">Home</a>
   <a href="#about">Customer Table</a>
   <a href="product.php">Product Table</a>
   <a href="collection.php">Collection Table</a>
-  <a href="items.php">Collection Items</a>
   
 </div>
 
@@ -120,7 +119,7 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th><a style="font-family:Broadway">Firstname</th>
+						<th><a style="font-family:Broadway">Customer Name</th>
 						<th><a style="font-family:Broadway">Lastname</th>
 						<th><a style="font-family:Broadway">Middle Name</th>
 						<th><a style="font-family:Broadway">Ext Name</th>

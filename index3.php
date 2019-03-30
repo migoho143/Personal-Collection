@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 </head>
 <body>
+<img src="pcs.jpg" alt="Trulli" width="400" height="45">
 
 <div id="main">
 			
@@ -50,10 +51,10 @@
 			if($update==true):
 		?>
 		<button type="submit" class="btn btn-info" name="update">Update</button>
-		<a href="index2.php"class="btn btn-info">Cancel</a>
+		<a href="index2.php"class="btn btn-info">View Customer</a>
 		<?php else: ?>
 			<button type="submit" class="btn btn-primary" name="save">Save</button>
-			<a href="index2.php"class="btn btn-primary">Cancel</a>
+			<a href="index2.php"class="btn btn-primary">View Customer</a>
 		<?php endif;?>
 		</div>
 	</form>

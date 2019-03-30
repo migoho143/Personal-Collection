@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 </head>
 <body>
+<img src="pcs.jpg" alt="Trulli" width="400" height="45">
+
 
 <div id="main">
 			
@@ -16,10 +18,17 @@
 	<div class="col-sm-4">
 	<div class="row justify-content-center">
 	<form action="process2.php" method="POST">
+
 	<input type="hidden" name="id" value="<?php echo $id; ?>">
 		<div class="form-group"><b>
 		<font color="black"><label for="exampleInputEmail1">Particular:</label>
-			<input type="text" name="particular" class="form-control" value="<?php echo $particular;?>"placeholder="particular" required>
+			<select name="particular" input type="text" name="particular" class="form-control" value="<?php echo $particular;?>"placeholder="particular" required>
+			<option value=""></option>
+			<option value="lotion">lotion</option>
+			<option value="bags">bag</option>
+			<option value="t-shirt">t-shirt</option>
+			<option value="shorts">shorts</option>
+			</select>
 		</div>
 		<div class="form-group">
 		<font color="black"><label for="exampleInputEmail1">Item_quantity:</label>
@@ -27,7 +36,12 @@
 		</div>
 		<div class="form-group">
 		<font color="black"><label for="exampleInputEmail1">Unit:</label>
-			<input type="text" name="unit" class="form-control" value="<?php echo $unit;?>"placeholder="unit" required>
+			<select name="unit" input type="text" name="unit" class="form-control" value="<?php echo $unit;?>"placeholder="unit" required>
+			<option value=""></option>
+			<option value="liter">liters</option>
+			<option value="dozen">dozen</option>
+			<option value="kl">kl</option>
+			</select>
 		</div>
 		<div class="form-group">
 		<font color="black"><label for="exampleInputEmail1">Regular_price:</label>
@@ -42,10 +56,10 @@
 			if($update==true):
 		?>
 		<button type="submit" class="btn btn-info" name="update">Update</button>
-		<a href="product.php"class="btn btn-info">Cancel</a>
+		<a href="product.php"class="btn btn-info">View Product</a>
 		<?php else: ?>
 			<button type="submit" class="btn btn-primary" name="save">Save</button>
-			<a href="product.php"class="btn btn-primary">Cancel</a>
+			<a href="product.php"class="btn btn-primary">View Product</a>
 		<?php endif;?>
 		</div>
 	</form>

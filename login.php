@@ -8,12 +8,17 @@
 
 </head>
 <body>
+<img src="pcs.jpg" alt="Trulli" width="400" height="45">
+<a style="position:absolute;left:30%;"><img src="4.jpg" alt="Trulli" width="60" height="50">
 		
         <section class="main">
         <div class="row justify-content-center">
 		 <div class="col-sm-4">
+		 <a style="position:absolute;left:29%;bottom:58%;"><img src="admin.png" width="200" height="200"/></a>
 		<form method="post" action="login.php">
-			<center><h2><a style="font-family:Broadway;">Login</h2></center></a>
+		<div class="userimage">
+			
+			</div>
 			<?php include('errors.php'); ?>
 
 			<div class="input-group">
