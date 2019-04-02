@@ -59,7 +59,6 @@
   
 </div>
 
-<a style="position:absolute;bottom:80%;right:45%;" href="additems.php"class="btn btn-info">Add Items</a>
 
 <header class="main">
     <div class="row justify-content-center">
@@ -199,6 +198,14 @@
 		
 		?>
 		
+		<?php
+
+		$result = $mysqli->query("SELECT * FROM items,product where items.product_id=product.product_id") or die($mysqli->error);
+		
+		//pre_r($result);
+		
+		?>
+		
 		<h1><a style="bottom:60%;right:56%;font-family:Broadway;color:red;">Collection Items</h1></a>
 		<div class="row justify-content-center">
 		<br><br><br>
@@ -208,8 +215,10 @@
 						<th><a style="font-family:Broadway">Collection Code.</th>
 						<th><a style="font-family:Broadway">Product_ID</th>
 						<th><a style="font-family:Broadway">Quantity</th>
+						<th><a style="font-family:Broadway">Regular Price</th>
 						<th><a style="font-family:Broadway">Unit</th>
-						<th><a style="font-family:Broadway">Amount</th>
+						<th><a style="font-family:Broadway">Total</th>
+						<th colspan="2"><a style="font-family:Broadway">Action</th>
 						
 					</tr>
 				</thead>
@@ -223,8 +232,16 @@
 							<td><a style="font-family:Elephant;"><?php echo $row['collection_code']?></td></a>
 							<td><a style="font-family:Elephant;"><?php echo $row['product_id']?></td></a>
 							<td><a style="font-family:Elephant;"><?php echo $row['quantity']?></td></a>
+							<td>₱.<a style="font-family:Elephant;"><?php echo $row['regular_price']?></td></a>
 							<td><a style="font-family:Elephant;"><?php echo $row['unit']?></td></a>
-							<td><a style="font-family:Elephant;"><?php echo $row['amount']?></td></a>
+							<td><a style="font-family:Elephant;"><?php echo $row['TOTAL']=$row['regular_price']*$row['quantity']?></td></a>
+							<td>
+								<a href="index5.php?edit=<?php echo $row['collection_code'];?>"
+									class="btn btn-info">Edit</a>
+								<a href="process3.php?delete=<?php echo $row['collection_code'];?>"
+									class="btn btn-danger">Delete</a>
+									
+							</td>
 							
 
 						</tr>
@@ -239,7 +256,7 @@
 		}
 	
 	?>
-	
+	<a style="bottom:60%;right:45%;" href="additems.php"class="btn btn-info">View Items</a>
 	
 </div>
 

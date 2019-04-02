@@ -121,7 +121,6 @@
 					<tr>
 						<th><a style="font-family:Broadway">Product ID</th>
 						<th><a style="font-family:Broadway">Particular</th>
-						<th><a style="font-family:Broadway">Item Quantity</th>
 						<th><a style="font-family:Broadway">Unit</th>
 						<th><a style="font-family:Broadway">Regular Price</th>
 						<th><a style="font-family:Broadway">Discount</th>
@@ -138,7 +137,6 @@
 						<tr>
 							<td><a style="font-family:Elephant;"><?php echo $row['product_id']?></td></a>
 							<td><a style="font-family:Elephant;"><?php echo $row['particular']?></td></a>
-							<td><a style="font-family:Elephant;"><?php echo $row['item_quantity']?></td></a>
 							<td><a style="font-family:Elephant;"><?php echo $row['unit']?></td></a>
 							<td><a style="font-family:Elephant;"><?php echo $row['regular_price']?></td></a>
 							<td><a style="font-family:Elephant;"><?php echo $row['discount']?></td></a>

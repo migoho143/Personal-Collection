@@ -128,6 +128,25 @@
 			<input type="quantity" name="quantity" class="form-control" value="<?php echo $quantity;?>"placeholder="quantity" required>
 		</div>
 		<div class="form-group">
+
+		<b><a style="font-size:20px;">Regular Price</b></a>
+		<?php
+			$sql = "SELECT * FROM product";
+			$result = mysqli_query($mysqli, $sql);
+
+		?>
+		<select name="product_id" class="form-control">
+		<?php
+			$resultCheck = mysqli_num_rows($records);
+				while ($row = mysqli_fetch_array($result)){
+					
+		?>
+			<option value="<?php echo $row['product_id'];?>"><?php echo $row['regular_price'];?></option>
+			<?php
+				}
+			?>
+		</select>
+		<div class="form-group">
 		<font color="black"><label for="exampleInputEmail1"><b>Unit:</label></b>
 		<select name="unit" class="form-control">
 			<option value="dozen">dozen</option>
@@ -135,10 +154,7 @@
 			<option value="pcs">pcs.</option>
 		</div>
 		</select>
-		<div class="form-group">
-		<font color="black"><label for="exampleInputEmail1"><b>Amount:</label></b>
-			<input type="amount" name="amount" class="form-control" value="<?php echo $amount;?>"placeholder="amount" required>
-		</div>
+
 		<div class="form-group">
 		<?php 
 			if($update==true):

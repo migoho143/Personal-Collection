@@ -1,4 +1,4 @@
-<?php include('process5.php');?>
+<?php include('process7.php');?>
 <?php
 $conn = mysqli_connect("localhost","root","","registration");
  
@@ -108,6 +108,9 @@ if (mysqli_connect_errno())
 			?>
 		</select></a></br>
 		
+		
+		
+		
 		<?php
 
 		$result = $mysqli->query("SELECT * FROM product,customer where product.product_id=customer.customer_id") or die($mysqli->error);
@@ -117,6 +120,10 @@ if (mysqli_connect_errno())
 		
 		?>
 		
+		
+
+
+		
 	<div>
 	
 	<div class="row justify-content-center">
@@ -125,29 +132,31 @@ if (mysqli_connect_errno())
 	<h1><a style="bottom:60%;right:65%;font-family:Broadway;color:black;">Items</h1></a>
 		<thead>
 			<th></th>
+			<th>Collection Code.</th>
 			<th>Product ID</th>
-			<th>Particular</th>
-			<th>Item Quantity</th>
-			<th>Unit</th>
+			<th>Quantity</th>
 			<th>Regular Price</th>
-			<th>Discount</th>
+			<th>Unit</th>
+			<th>Total</th>
 		</thead>
 		<tbody>
  
 			<?php
 			
-				$query=mysqli_query($conn,"select * from `product`");
+				$query=mysqli_query($conn,"select * from items, product WHERE items.product_id = product.product_id	");
 				while($row=mysqli_fetch_array($query)){
 					?>
 					<tr>
 						<td><input type="checkbox" value="<?php echo $row['product_id']; ?>" name="id[]"></td>
-						<td><?php echo $row['product_id']; ?></td>
-						<td><?php echo $row['product_id']; ?></td>
-						<td><?php echo $row['particular']; ?></td>
-						<td><?php echo $row['item_quantity']; ?></td>
-						<td><?php echo $row['unit']; ?></td>
-						<td><?php echo $row['regular_price']; ?></td>
-						<td><?php echo $row['discount']; ?></td>
+						<td><a style="font-family:Elephant;"><?php echo $row['collection_code']; ?></td></a>
+						<td><a style="font-family:Elephant;"><?php echo $row['product_id']; ?></td></a>
+						<td><a style="font-family:Elephant;"><?php echo $row['quantity']; ?></td></a>
+						<td><a style="font-family:Elephant;">₱.<?php echo $row['regular_price']; ?></td></a>
+						<td><a style="font-family:Elephant;"><?php echo $row['unit']; ?></td></a>
+						<td><a style="font-family:Elephant;">₱.<?php echo $row['TOTAL']=$row['regular_price']*$row['quantity']?></td></a>
+						
+						
+						
 					</tr>
 					<?php
 				}
@@ -156,6 +165,10 @@ if (mysqli_connect_errno())
 		</tbody>
 		</div>
 	</table>
+	
+	
+	
+	
 
 	<br>
 	<input  type="submit" class="btn btn-primary" name="submit" value="Submit">
@@ -163,31 +176,65 @@ if (mysqli_connect_errno())
 	</div>
 	
 
-	<a style="font-family:Broadway;color:red;"><h1>Records</h1></a>
+	
+	
+		
+		
+		
+	<div class="row justify-content-center">
+	<form method="POST">
+	<table class="table">
+		<thead>
+			<th>Customer Name</th>
+			<th>Collection Code.</th>
+			<th>Product ID</th>
+			<th>Quantity</th>
+			<th>Reqular Price</th>
+			<th>Unit</th>
+			<th>Total</th>
+			
+		</thead>
+		<tbody>
+		
 
-	<table border="2">
+	
+	
 		<thead>
 		<tbody>
-	<a style="font-family:Times-new Roman;color:black;">
+		
+	<a style="font-family:Broadway;color:red;"><h1>Records</h1></a>
+	<tr>
 		<?php
 			if (isset($_POST['submit'])){
 				
 				foreach ($_POST['id'] as $id):
 				
-				$sq=mysqli_query($conn,"select * from product,customer where product_id='$id'");
-				$srow=mysqli_fetch_array($sq);
-				echo $srow['product_id']." "." "." ". $srow['particular']." "." ". $srow['item_quantity']." "." ". $srow['unit']." "." ". $srow['regular_price']." "." ". $srow['discount']." "." ". $srow['firstname']."<br>";
+				$sq=mysqli_query($conn,"select * from items,customer where product_id='$id'");
+				$sq=mysqli_query($conn,"select * from items,customer,product where items.product_id=product.product_id");
+				$row=mysqli_fetch_array($sq);
+				?>
+				<tr>
+				<td><?php echo $row['firstname']; ?></td>
+				<td><?php echo $row['collection_code']; ?></td>
+				<td><?php echo $row['product_id']; ?></td>
+				<td><?php echo $row['quantity']; ?></td>
+				<td>₱.<?php echo $row['regular_price']; ?></td>
+				<td><?php echo $row['unit']; ?></td>
+				<td>₱.<?php echo $row['TOTAL']=$row['regular_price']*$row['quantity']?></td>
+				</tr>
+				
+				<?php
 				
 				endforeach;
 			}
-			
-		?>
-		</a>
-		</tbody>
-		</thead>
+		?>	
 	</div>
-	</table>
 	</form>
+	<tbody>
+	</table>
+ 
+
+	
 
 </body>
 </html>

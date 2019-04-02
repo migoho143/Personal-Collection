@@ -31,10 +31,6 @@
 			</select>
 		</div>
 		<div class="form-group">
-		<font color="black"><label for="exampleInputEmail1">Item_quantity:</label>
-			<input type="text" name="item_quantity" class="form-control" value="<?php echo $item_quantity;?>"placeholder="item_quantity" required>
-		</div>
-		<div class="form-group">
 		<font color="black"><label for="exampleInputEmail1">Unit:</label>
 			<select name="unit" input type="text" name="unit" class="form-control" value="<?php echo $unit;?>"placeholder="unit" required>
 			<option value=""></option>
