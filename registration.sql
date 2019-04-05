@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2019 at 10:33 PM
+-- Generation Time: Apr 02, 2019 at 06:21 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -87,6 +87,15 @@ CREATE TABLE `items` (
   `amount` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`collection_code`, `userid`, `product_id`, `quantity`, `unit`, `amount`) VALUES
+(43, 6, 9, '8', 'dozen', '5000.00'),
+(43, 6, 10, '4', 'pcs', '50000.00'),
+(44, 6, 11, '6', 'liters', '0.00');
+
 -- --------------------------------------------------------
 
 --
@@ -108,10 +117,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `userid`, `particular`, `item_quantity`, `unit`, `regular_price`, `discount`) VALUES
-(5, 6, 'lotion', 4, 'dozen', 1000, '50.00'),
-(6, 6, 't-shirt', 5, 'kl', 500, '5.00'),
-(7, 6, 'shoes', 3, 'kl', 550, '10.00'),
-(8, 6, 'bag', 3, 'liter', 5676, '5.00');
+(9, 6, 'lotion', 0, 'dozen', 500, '10.00'),
+(10, 6, 'bags', 0, 'kl', 1000, '5.00'),
+(11, 6, 'shorts', 0, 'liter', 350, '3.00');
 
 -- --------------------------------------------------------
 
@@ -186,7 +194,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `collection`
 --
 ALTER TABLE `collection`
-  MODIFY `collection_code` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `collection_code` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `customer`
 --
@@ -196,7 +204,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `product_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `users`
 --
